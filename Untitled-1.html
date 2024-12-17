@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are You a Freak?</title>
+    <style>
+        /* Center the main heading */
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Style for the input box */
+        #textInput {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+
+        /* Style for the pop-up container */
+        #popupContainer {
+            display: none; /* Initially hidden */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        /* Style for the background overlay */
+        #overlay {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 5;
+        }
+
+        /* Style for the image inside the pop-up */
+        #popupImage {
+            width: 200px;
+            margin-top: 15px;
+        }
+
+        /* Style for the new page when the answer is neither yes nor no */
+        #newPage {
+            display: none; /* Initially hidden */
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Style for the image in the new page */
+        #newPageImage {
+            width: 200px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main heading -->
+    <h1>Are You a Freak?</h1>
+
+    <!-- Input box -->
+    <input type="text" id="textInput" placeholder="Type 'yes' or 'no'...">
+
+    <!-- Background overlay -->
+    <div id="overlay"></div>
+
+    <!-- Pop-up container -->
+    <div id="popupContainer">
+        <h2 id="popupHeading">Well, I am Too!</h2>
+        <img id="popupImage" src="your-image.jpg" alt="Freak Image">
+    </div>
+
+    <!-- New page when the answer is neither yes nor no -->
+    <div id="newPage">
+        <img id="newPageImage" src="your-other-image.jpg" alt="Retarded Image">
+    </div>
+
+    <script>
+        const textInput = document.getElementById("textInput");
+        const popupContainer = document.getElementById("popupContainer");
+        const overlay = document.getElementById("overlay");
+        const newPage = document.getElementById("newPage");
+        const popupHeading = document.getElementById("popupHeading");
+        const popupImage = document.getElementById("popupImage");
+        const newPageImage = document.getElementById("newPageImage");
+
+        textInput.addEventListener("input", () => {
+            const inputValue = textInput.value.trim().toLowerCase();
+
+            // If input is "yes"
+            if (inputValue === "yes") {
+                popupHeading.textContent = "Well, I am Too!";
+                popupImage.src = "C:\\Users\\kbran\\Downloads\\sonic-freaky.gif"; // Change to your desired image
+                popupContainer.style.display = "block";
+                newPage.style.display = "none"; // Hide the new page
+                overlay.style.display = "block";
+            }
+            // If input is "no"
+            else if (inputValue === "no") {
+                popupHeading.textContent = "You're still getting touched";
+                popupImage.src = "C:\\Users\\kbran\\Downloads\\sonic-freaky.gif"; // Same image as before
+                popupContainer.style.display = "block";
+                newPage.style.display = "none"; // Hide the new page
+                overlay.style.display = "block";
+            }
+            // If input is anything other than "yes" or "no"
+            else {
+                popupContainer.style.display = "none"; // Hide the pop-up
+                overlay.style.display = "none"; // Hide the overlay
+                newPage.style.display = "block"; // Show the new page
+                newPageImage.src = "C:\\Users\\kbran\\Downloads\\download.jpeg"; // Change to your different image
+            }
+        });
+
+        // Optional: Hide the pop-up and new page when clicking on the overlay
+        overlay.addEventListener("click", () => {
+            popupContainer.style.display = "none";
+            overlay.style.display = "none";
+            textInput.value = ""; // Clear the input
+        });
+    </script>
+</body>
+</html>
